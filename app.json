@@ -2,14 +2,15 @@
   "expo": {
     "name": "@banky/app",
     "slug": "banky",
-    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "privacy": "public",
+    "owner": "rodcordeiro",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#2e2e2e"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -17,14 +18,25 @@
     "ios": {
       "supportsTablet": true
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/64a19d11-6df9-40e6-b7ef-d5b6f893c294"
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2e2e2e"
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.rodcordeiro.mytodo",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "64a19d11-6df9-40e6-b7ef-d5b6f893c294"
+      }
     }
   }
 }
