@@ -1,65 +1,57 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
+import { Animated, Text, Dimensions } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { ToastColor, ToastIcon, ToastProps } from './types';
+import { styles } from './styles';
 
-const { width, height } = Dimensions.get('screen');
-export type ToastProps = {
-  visible: boolean;
-  content: string;
-  type: 'success' | 'error' | 'warning';
-};
-enum ToastIcon {
-  success = 'check-circle',
-  error = 'meh',
-  warning = 'alert-triangle',
-}
-enum ToastColor {
-  success = '#3b3',
-  error = '#a12',
-  warning = '#d60',
-}
-export const Toast: React.FC<ToastProps> = ({
-  visible = false,
-  content,
-  type,
-}) => {
+const { width, height } = Dimensions.get('window');
+
+const Toast: React.FC<ToastProps> = ({ visible = false, content, type }) => {
+  const toastPosition = height * 2;
+  const popAnim = React.useRef(new Animated.Value(toastPosition)).current;
+  const hideToast = () =>
+    setTimeout(() => {
+      Animated.timing(popAnim, {
+        toValue: toastPosition,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }, 5000);
+  React.useEffect(() => {
+    if (visible) {
+      Animated.timing(popAnim, {
+        toValue: height * 0.45,
+        duration: 300,
+        useNativeDriver: true,
+      }).start(hideToast);
+    }
+  }, [visible]);
+
   return (
-    <View style={[styles.toast, { backgroundColor: ToastColor[type] }]}>
-      <Feather
-        name={ToastIcon[type]}
-        style={styles.icon}
-        adjustsFontSizeToFit
-      />
-      <Text style={styles.text}>{content}</Text>
-    </View>
+    visible && (
+      <Animated.View
+        style={[
+          styles.toast,
+          {
+            backgroundColor: ToastColor[type],
+            left: width * 0.05,
+            width: width * 0.9,
+            transform: [
+              {
+                translateY: popAnim,
+              },
+            ],
+          },
+        ]}>
+        <Feather
+          name={ToastIcon[type]}
+          style={styles.icon}
+          adjustsFontSizeToFit
+        />
+        <Text style={styles.text}>{content}</Text>
+      </Animated.View>
+    )
   );
 };
 
-const styles = StyleSheet.create({
-  toast: {
-    position: 'absolute',
-    zIndex: 9999,
-    borderRadius: 5,
-    backgroundColor: 'green',
-    width: width * 0.9,
-    minHeight: 50,
-    bottom: 20,
-    left: width * 0.05,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 10,
-  },
-  text: {
-    color: 'white',
-    fontSize: 16,
-    lineHeight: 18,
-  },
-  icon: {
-    color: 'white',
-    fontSize: 18,
-    lineHeight: 18,
-    padding: 5,
-  },
-});
+export { Toast, ToastProps };

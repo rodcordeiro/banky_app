@@ -1,12 +1,12 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Navigator } from './navigation';
-import { ToastHook } from './hooks/toast';
 
 export default function Banky() {
   return (
-    <ToastHook>
+    <React.Fragment>
       <Navigator />
       <StatusBar style="dark" animated />
-    </ToastHook>
+    </React.Fragment>
   );
 }

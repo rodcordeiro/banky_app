@@ -1,31 +1,36 @@
 import React from 'react';
 
-import { Toast } from '../../components/layout/Toast';
+import { Toast } from '../../components/layout/toast';
 
-export type ToastProps = {
-  toast(payload: any): void;
+export type ToastContextProps = {
+  showToast: (payload: any) => void;
 };
 
 type ToastProviderProps = {
   children?: any;
 };
 
-const ToastContext = React.createContext<ToastProps>({} as ToastProps);
+const ToastContext = React.createContext<ToastContextProps>(
+  {} as ToastContextProps,
+);
 
 export function ToastHook({
   children,
 }: React.PropsWithChildren<ToastProviderProps>) {
-  const showToast = () => console.log('oi');
+  const showToast = React.useCallback(() => console.log('oi'), []);
+
   return (
     <React.Fragment>
       <ToastContext.Provider
         value={{
-          toast: showToast,
+          showToast,
         }}>
         {children}
-
-        <Toast content="Some succedded toast" type="error" />
       </ToastContext.Provider>
     </React.Fragment>
   );
+}
+
+export function useToast() {
+  return React.useContext<ToastContextProps>(ToastContext);
 }

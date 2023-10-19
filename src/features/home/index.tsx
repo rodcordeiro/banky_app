@@ -12,7 +12,6 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f00",
     alignItems: "center",
     justifyContent: "center",
   },
