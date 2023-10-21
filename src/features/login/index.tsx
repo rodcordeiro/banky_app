@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { Toast } from '../../components/layout/toast';
+import { Toast } from '../../components/layout/Toast';
 import { Form } from '../../components/tools/form';
 
 import { loginFormSchema } from './types/login.types';
