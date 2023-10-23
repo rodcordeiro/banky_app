@@ -13,4 +13,5 @@ export namespace AccountsTypes {
     name: string;
     type: AccountType;
   };
+  export type AccountDetails = Account;
 }

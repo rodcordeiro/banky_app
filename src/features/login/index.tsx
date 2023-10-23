@@ -6,10 +6,10 @@ import { Form } from '../../components/tools/form';
 
 import { loginFormSchema } from './types/login.types';
 import { styles } from './styles';
-import { LoginHook } from './hooks/login.hooks';
+import { useLoginHook } from './hooks/login.hooks';
 
 const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
-  const { loading, handleSubmit, toast } = LoginHook(navigation);
+  const { loading, handleSubmit, toast } = useLoginHook(navigation);
   return (
     <View style={styles.container}>
       <Form

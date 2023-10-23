@@ -3,29 +3,24 @@ import React from 'react';
 import { ToastProps } from '../../../components/layout/toast';
 import { api } from '../../../core/api';
 import usePersistedState from '../../../utils/usePersistedState';
+import { store } from '../../../redux/store.redux';
+import { login, loginError, loginStart } from '../../../redux/actions.redux';
 
 import { LoginFormType } from '../types/login.types';
 import { LoginRequest } from '../api/login.requests';
-import { useNavigation } from '@react-navigation/native';
-export function LoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
+export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [toast, setToast] = React.useState<ToastProps>();
-  const [, setAuthenticated] = usePersistedState<boolean>(
-    'authenticated',
-    false,
-  );
-  const [, setRefreshToken] = usePersistedState<string>('refreshToken', '');
-  const [, setExpiration] = usePersistedState<string>('expiration', '');
-
+  const dispatch = store.dispatch;
   const handleSubmit = React.useCallback(async (data: LoginFormType) => {
     setLoading(true);
+    dispatch(loginStart());
+
     await LoginRequest(data)
       .then((response) => {
         api.defaults.headers.Authorization =
           'Bearer ' + response.data.accessToken;
-        setAuthenticated(true);
-        setRefreshToken(response.data.refreshToken);
-        setExpiration(new Date(response.data.expires).toISOString());
+        dispatch(login(response.data));
         setToast({
           content: 'Logado com sucesso!',
           type: 'success',
@@ -35,6 +30,7 @@ export function LoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
       })
       .catch((err) => {
         console.log(err);
+        dispatch(loginError());
         setToast({
           content: 'Falha ao logar',
           type: 'error',

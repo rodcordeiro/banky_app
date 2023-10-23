@@ -1,3 +1,4 @@
+import { useRedux } from '../../hooks';
 import axios from 'axios';
 
 const api = axios.create({

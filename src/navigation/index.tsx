@@ -1,30 +1,24 @@
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Feather } from '@expo/vector-icons';
-import { View } from 'react-native';
 
-import usePersistedState from '../utils/usePersistedState';
+import { api } from '../core/api';
 
-import HomeScreen from '../features/home';
-import AccountsScreen from '../features/accounts/home';
 import LoginScreen from '../features/login';
-import { Button } from '../components/layout/button';
+
 import { AuthenticatedNavigation } from './authenticated.routes';
+import { useRedux } from '../hooks';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const Drawer = createDrawerNavigator<AuthenticatedRootStackParamList>();
 
 export const Navigator = () => {
-  const [authenticated, setAuthenticated] = usePersistedState<boolean>(
-    'authenticated',
-    false,
-  );
-
+  const auth = useRedux().useAppSelector((state) => state.auth);
+  const authenticated =
+    auth.access_token &&
+    auth.expiration &&
+    auth.expiration.toString() > Date.now().toString();
+  if (authenticated) {
+    api.defaults.headers.Authorization = 'Bearer ' + auth.access_token;
+  }
   console.log({ authenticated });
   return (
     <NavigationContainer>

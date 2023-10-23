@@ -1,8 +1,10 @@
 import { TextInputProps } from 'react-native';
 
-export type InputProps = {
+export type SelectProps<T> = {
   name: string | number | symbol;
-  type?: 'text' | 'number' | 'password' | 'email';
-  defaultValue?: string | number;
+  options?: T[];
+  defaultValue?: T;
+  labelProp?: string;
+  valueProp?: string;
   onChangeText?: (newValue: string | number) => void;
 } & TextInputProps;

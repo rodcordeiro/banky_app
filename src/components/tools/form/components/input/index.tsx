@@ -6,7 +6,13 @@ import { getErrorMessage } from '../../utils/get-errors.util';
 import { InputProps } from './types/input.types';
 import { styles } from './styles';
 
-const Input = ({ name, onChangeText, type, ...rest }: InputProps) => {
+const Input = ({
+  name,
+  onChangeText,
+  type,
+  defaultValue,
+  ...rest
+}: InputProps) => {
   const {
     clearErrors,
     setValue,
@@ -43,7 +49,7 @@ const Input = ({ name, onChangeText, type, ...rest }: InputProps) => {
   return (
     <Controller
       name={stringfyedName}
-      //   defaultValue={defaultValue}
+      defaultValue={defaultValue}
       render={({ field }) => (
         <View style={styles.container}>
           <TextInput

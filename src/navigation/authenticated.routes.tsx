@@ -6,23 +6,18 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { View } from 'react-native';
 
-import usePersistedState from '../utils/usePersistedState';
+import { store } from '../redux/store.redux';
+import { logOut } from '../redux/actions.redux';
 
 import HomeScreen from '../features/home';
-import AccountsScreen from '../features/accounts/home';
+
 import { Button } from '../components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
 
 const Drawer = createDrawerNavigator<AuthenticatedRootStackParamList>();
 
 export const AuthenticatedNavigation = () => {
-  const [_, setAuthenticated] = usePersistedState<boolean>(
-    'authenticated',
-    false,
-  );
-  const resetAuth = () => {
-    setAuthenticated(false);
-  };
+  const dispatch = store.dispatch;
 
   return (
     <Drawer.Navigator
@@ -45,7 +40,7 @@ export const AuthenticatedNavigation = () => {
             <Button
               content="Logoff"
               style={{ position: 'absolute', bottom: 10, width: '80%' }}
-              onPress={() => resetAuth()}
+              onPress={() => dispatch(logOut())}
             />
           </DrawerContentScrollView>
         </View>
@@ -72,7 +67,6 @@ export const AuthenticatedNavigation = () => {
           ),
         }}
       />
-      
     </Drawer.Navigator>
   );
 };
