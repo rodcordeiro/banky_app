@@ -10,6 +10,9 @@ declare global {
     Home: undefined;
     Accounts: undefined;
     AccountsHome: undefined;
+    AccountView: {
+      id: string;
+    };
   };
 
   type ScreenProps<

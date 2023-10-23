@@ -19,7 +19,6 @@ export function LoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
 
   const handleSubmit = React.useCallback(async (data: LoginFormType) => {
     setLoading(true);
-    console.log({ data });
     await LoginRequest(data)
       .then((response) => {
         api.defaults.headers.Authorization =
