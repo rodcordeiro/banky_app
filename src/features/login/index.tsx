@@ -1,6 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
+import { version } from '../../../package.json';
 import { Toast } from '../../components/layout/toast';
 import { Form } from '../../components/tools/form';
 
@@ -36,6 +37,14 @@ const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
         type={toast?.type || 'info'}
         visible={!!toast}
       />
+      <Text
+        style={{
+          fontSize: 12,
+          color: 'lightgray',
+          fontWeight: '200',
+        }}>
+        v{version}
+      </Text>
     </View>
   );
 };
