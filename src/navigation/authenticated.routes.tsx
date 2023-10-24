@@ -14,7 +14,7 @@ import HomeScreen from '../features/home';
 import { Button } from '../components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
 
-const Drawer = createDrawerNavigator<AuthenticatedRootStackParamList>();
+const Drawer = createDrawerNavigator<RootStackParamList>();
 
 export const AuthenticatedNavigation = () => {
   const dispatch = store.dispatch;
@@ -34,7 +34,7 @@ export const AuthenticatedNavigation = () => {
         swipeEdgeWidth: 50,
       }}
       drawerContent={(props) => (
-        <View style={{ flex: 1, height: '100%' }}>
+        <View style={{ flex: 1 }}>
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             <Button

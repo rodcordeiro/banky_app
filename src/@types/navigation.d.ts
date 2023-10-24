@@ -4,9 +4,7 @@ declare global {
   type RootStackParamList = {
     Login: undefined;
     Authenticated: undefined;
-  };
 
-  type AuthenticatedRootStackParamList = {
     Home: undefined;
     Accounts: undefined;
     AccountsHome: undefined;
@@ -15,10 +13,8 @@ declare global {
     };
   };
 
-  type ScreenProps<
-    T extends keyof (RootStackParamList & AuthenticatedRootStackParamList),
-  > = NativeStackScreenProps<
-    RootStackParamList & AuthenticatedRootStackParamList,
+  type ScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<
+    RootStackParamList,
     T
   >;
 }

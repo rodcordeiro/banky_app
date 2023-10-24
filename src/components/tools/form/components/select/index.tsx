@@ -11,8 +11,7 @@ const Select = ({
   name,
   options,
   defaultValue,
-  labelProp,
-  valueProp,
+  onChangeOption,
   ...rest
 }: SelectProps) => {
   const {
@@ -28,18 +27,17 @@ const Select = ({
     () => getErrorMessage(errors, stringfyedName),
     [errors, stringfyedName],
   );
-  console.log({ options, labelProp, valueProp });
 
   const handleOptionChange = React.useCallback(
-    (newText: any, onChange: (...event: any[]) => void) => {
+    (value: any, onChange: (...event: any[]) => void) => {
       clearErrors();
 
-      const newValue = newText;
-      console.log({ newValue });
+      const newValue = options?.find((option) => option.value === value);
 
+      if (onChangeOption) onChangeOption(newValue!);
       onChange(newValue);
     },
-    [clearErrors, setValue, stringfyedName],
+    [clearErrors, setValue, stringfyedName, options],
   );
 
   return (
@@ -50,21 +48,19 @@ const Select = ({
         <View style={styles.container}>
           <Picker
             key={stringfyedName}
-            selectedValue={valueProp ? field.value[valueProp] : field.value}
-            onValueChange={(itemValue, itemIndex) =>
+            selectedValue={field.value?.value}
+            onValueChange={(itemValue, _) =>
               handleOptionChange(itemValue, field.onChange)
             }>
             {options?.map((option, index) => {
               return (
                 <Picker.Item
                   key={index}
-                  label={option.label}
-                  // label="JavaScript"
-                  value="js"
+                  label={option.label.toString()}
+                  value={option.value}
                 />
               );
             })}
-            <Picker.Item label="JavaScript" value="js" />
           </Picker>
           {!!fieldError && (
             <View>

@@ -24,12 +24,14 @@ const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
     const enablesCredit =
       account?.type === AccountsTypes.AccountType.CREDIT ||
       account?.type === AccountsTypes.AccountType.CREDIT_AND_DEBIT;
+
     return {
       enablesCash,
       enablesCredit,
       enablesDebit,
     };
   }, [account]);
+
   return (
     <View style={styles.container}>
       {loading ? (
@@ -45,7 +47,7 @@ const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
           </View>
           <View style={styles.accountHeader}>
             <View style={styles.accountTitle}>
-              <Text style={styles.accountTitleLabel}>Account:</Text>
+              <Text style={styles.accountTitleLabel}>Conta:</Text>
               <Text style={styles.accountTitleText}>{account?.name}</Text>
             </View>
             <View style={styles.iconsContainer}>
@@ -66,29 +68,37 @@ const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
               />
             </View>
           </View>
-          {/* <Form
-            handleSubmit={(data) => console.log({ data })}
-            zodSchema={AccountEditFormSchema}
-            submitButtonText="Editar"
-            inputs={[
-              {
-                name: 'type',
-                type: 'select',
-                // labelProp: 'label',
-                // valueProp: 'value',
-                options: [
-                  {
-                    label: 'Cash',
-                    value: AccountsTypes.AccountType.CASH,
-                  },
-                  {
-                    label: 'Debit',
-                    value: AccountsTypes.AccountType.DEBIT,
-                  },
-                ],
-              },
-            ]}
-          /> */}
+          {account && (
+            <Form
+              handleSubmit={(data) => console.log({ data })}
+              zodSchema={AccountEditFormSchema}
+              submitButtonText="Editar"
+              inputs={[
+                {
+                  name: 'type',
+                  type: 'select',
+                  options: [
+                    {
+                      label: 'Dinheiro',
+                      value: AccountsTypes.AccountType.CASH,
+                    },
+                    {
+                      label: 'Debito',
+                      value: AccountsTypes.AccountType.DEBIT,
+                    },
+                    {
+                      label: 'Crédito',
+                      value: AccountsTypes.AccountType.CREDIT,
+                    },
+                    {
+                      label: 'Crédito e Débito',
+                      value: AccountsTypes.AccountType.CREDIT_AND_DEBIT,
+                    },
+                  ],
+                },
+              ]}
+            />
+          )}
         </View>
       )}
     </View>

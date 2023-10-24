@@ -16,10 +16,11 @@ export const Navigator = () => {
     auth.access_token &&
     auth.expiration &&
     auth.expiration.toString() > Date.now().toString();
+
   if (authenticated) {
     api.defaults.headers.Authorization = 'Bearer ' + auth.access_token;
   }
-  console.log({ authenticated });
+
   return (
     <NavigationContainer>
       {!authenticated ? (

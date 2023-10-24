@@ -8,7 +8,5 @@ export type SelectProps = {
   name: string | number | symbol;
   options?: SelectOption[];
   defaultValue?: SelectOption;
-  labelProp?: string;
-  valueProp?: string;
-  onChangeText?: (newValue: string | number) => void;
+  onChangeOption?: (newValue: SelectOption) => void;
 } & TextInputProps;
