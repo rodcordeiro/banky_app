@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { FieldValues } from 'react-hook-form';
 
-import { ButtonProps } from '../../../layout/button';
+import { ButtonProps } from '@/components/layout/button';
 
 import { InputProps } from '../components/input';
 import { SelectOption, SelectProps } from '../components/select';

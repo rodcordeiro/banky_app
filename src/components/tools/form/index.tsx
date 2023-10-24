@@ -3,10 +3,10 @@ import { FlatList, View } from 'react-native';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 
-import { iFormProps } from './types/form.types';
+import { Button } from '@/components/layout/button';
 
 import { mapInputs } from './utils/maps.utils';
-import { Button } from '../../layout/button';
+import { iFormProps } from './types/form.types';
 import { styles } from './styles';
 
 function Form<T extends FieldValues>({

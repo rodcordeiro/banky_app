@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { AccountsTypes } from '../../types/accounts.types';
 
 const AccountEditFormSchema = z.object({
   type: z.object({

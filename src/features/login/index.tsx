@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import { version } from '../../../package.json';
+import { version } from '@/../package.json';
 // import { Toast } from '../../components/layout/toast';
-import { Form } from '../../components/tools/form';
+import { Form } from '@/components/tools/form';
 
 import { loginFormSchema } from './types/login.types';
 import { styles } from './styles';

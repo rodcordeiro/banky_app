@@ -1,13 +1,13 @@
 import React from 'react';
 import { Native as Sentry } from 'sentry-expo';
 
-import { ToastProps } from '../../../components/layout/toast';
-import { api } from '../../../core/api';
-import { store } from '../../../redux/store.redux';
-import { login, loginError, loginStart } from '../../../redux/actions.redux';
+import { ToastProps } from '@/components/layout/toast';
+import { api } from '@/core/api';
+import { store } from '@/redux/store.redux';
+import { login, loginError, loginStart } from '@/redux/actions.redux';
 
-import { LoginFormType } from '../types/login.types';
-import { LoginRequest } from '../api/login.requests';
+import { LoginFormType } from '@/features/login/types/login.types';
+import { LoginRequest } from '@/features/login/api/login.requests';
 export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [toast, setToast] = React.useState<ToastProps>();

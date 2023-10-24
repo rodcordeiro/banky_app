@@ -3,7 +3,7 @@ import { TextInput, Text, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useFormContext, Controller } from 'react-hook-form';
 
-import { getErrorMessage } from '../../utils/get-errors.util';
+import { getErrorMessage } from '@/components/tools/form/utils/get-errors.util';
 import { SelectProps, SelectOption } from './types/input.types';
 import { styles } from './styles';
 

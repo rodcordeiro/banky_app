@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { AccountsTypes } from '../../../types/accounts.types';
+
+import { AccountsTypes } from '@/features/accounts/types/accounts.types';
 
 type Props = {
   onPress: (account: AccountsTypes.Account) => void;

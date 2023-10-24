@@ -6,12 +6,12 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { View } from 'react-native';
 
-import { store } from '../redux/store.redux';
-import { logOut } from '../redux/actions.redux';
+import { store } from '@/redux/store.redux';
+import { logOut } from '@/redux/actions.redux';
 
-import HomeScreen from '../features/home';
+import HomeScreen from '@/features/home';
 
-import { Button } from '../components/layout/button';
+import { Button } from '@/components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
 
 const Drawer = createDrawerNavigator<RootStackParamList>();

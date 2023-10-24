@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import { AccountsTypes } from '../types/accounts.types';
+import { AccountsTypes } from '@/features/accounts/types/accounts.types';
 import { useAccountsHook } from './hooks/accounts.hook';
 
 import { Account } from './components/account';

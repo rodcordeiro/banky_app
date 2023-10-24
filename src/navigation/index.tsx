@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { api } from '../core/api';
+import { api } from '@/core/api';
+import { useRedux } from '@/hooks';
 
-import LoginScreen from '../features/login';
+import LoginScreen from '@/features/login';
 
 import { AuthenticatedNavigation } from './authenticated.routes';
-import { useRedux } from '../hooks';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

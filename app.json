@@ -9,7 +9,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#8A2BE2"
     },
     "assetBundlePatterns": ["**/*"],
@@ -39,7 +39,9 @@
     "runtimeVersion": {
       "policy": "appVersion"
     },
-    "experimentals": {},
+    "experiments": {
+      "tsconfigPaths": true
+    },
     "plugins": ["sentry-expo"],
     "hooks": {
       "postPublish": [

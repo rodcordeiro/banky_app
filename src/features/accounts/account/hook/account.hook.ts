@@ -1,6 +1,6 @@
 import React from 'react';
-import { AccountsTypes } from '../../types/accounts.types';
-import { api } from '../../../../core/api';
+import { AccountsTypes } from '@/features/accounts/types/accounts.types';
+import { api } from '@/core/api';
 
 type Props = {
   id: string;

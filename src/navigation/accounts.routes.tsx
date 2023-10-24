@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import AccountsScreen from '../features/accounts/home';
-import AccountsViewScreen from '../features/accounts/account';
+import AccountsScreen from '@/features/accounts/home';
+import AccountsViewScreen from '@/features/accounts/account';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

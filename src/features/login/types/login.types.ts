@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { AuthResponseType } from '../../../redux/slices/auth/types/auth.type';
+import { AuthResponseType } from '@/redux/slices/auth/types/auth.type';
 
 export const loginFormSchema = z.object({
   username: z.string({ required_error: 'Insira um usuário válido' }),

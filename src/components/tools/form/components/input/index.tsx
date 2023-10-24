@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, Text, View } from 'react-native';
 import { useFormContext, Controller } from 'react-hook-form';
 
-import { getErrorMessage } from '../../utils/get-errors.util';
+import { getErrorMessage } from '@/components/tools/form/utils/get-errors.util';
 import { InputProps } from './types/input.types';
 import { styles } from './styles';
 

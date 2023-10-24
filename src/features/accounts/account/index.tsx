@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-import { Button } from '../../../components/layout/button';
-import { Form } from '../../../components/tools/form';
+import { Button } from '@/components/layout/button';
+import { Form } from '@/components/tools/form';
+
+import { AccountsTypes } from '@/features/accounts/types/accounts.types';
 
 import { useAccountViewHook } from './hook/account.hook';
 import { styles } from './styles';
-import { AccountsTypes } from '../types/accounts.types';
 import { AccountEditFormSchema } from './types/account.types';
 
 const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({

@@ -1,4 +1,4 @@
-import { SelectOption } from '../components/tools/form/components/select';
+import { SelectOption } from '@/components/tools/form/components/select';
 
 /**
  * Receives an array of data and transform it to the form select type
