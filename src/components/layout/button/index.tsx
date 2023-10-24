@@ -34,19 +34,14 @@ const Button: React.FC<ButtonProps> = ({
       {!!icon && (
         <>
           {isLoading ? (
-            <ActivityIndicator
-              color={styles.loader.color}
-            />
+            <ActivityIndicator color={styles.loader.color} />
           ) : (
             <Icon />
           )}
         </>
       )}
       {isLoading && !hasIcon && (
-        <ActivityIndicator
-          color={styles.loader.color}
-          size={'small'}
-        />
+        <ActivityIndicator color={styles.loader.color} size={'small'} />
       )}
       {!!content && (!isLoading || (!isLoading && hasIcon)) && (
         <Text style={styles.text}>{content}</Text>

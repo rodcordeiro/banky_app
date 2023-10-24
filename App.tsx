@@ -2,9 +2,10 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import * as Updates from 'expo-updates';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Sentry from 'sentry-expo';
 import Banky from './src';
 
-export default function App() {
+function App() {
   React.useLayoutEffect(() => {
     async function updateApp() {
       if (process.env.NODE_ENV === 'development') {
@@ -23,3 +24,5 @@ export default function App() {
 
   return <Banky />;
 }
+
+export default Sentry.Native.wrap(App);
