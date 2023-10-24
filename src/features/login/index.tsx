@@ -40,8 +40,10 @@ const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
       <Text
         style={{
           fontSize: 12,
-          color: 'lightgray',
+          color: 'black',
           fontWeight: '200',
+          position: 'absolute',
+          bottom: 10,
         }}>
         v{version}
       </Text>
