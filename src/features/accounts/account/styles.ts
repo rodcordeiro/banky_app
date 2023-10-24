@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   },
   accountTitleLabel: {
     color: '#9e9e9e',
-    left: 2
+    left: 2,
   },
   accountTitleText: {
     color: '#181818',

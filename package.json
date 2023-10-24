@@ -45,6 +45,7 @@
     "@types/react-redux": "^7.1.28",
     "@types/redux-persist": "^4.3.1",
     "@types/redux-thunk": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.32.0",
     "eslint-config-standard-with-typescript": "^39.0.0",

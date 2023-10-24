@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import { version } from '../../../package.json';
-import { Toast } from '../../components/layout/toast';
+// import { Toast } from '../../components/layout/toast';
 import { Form } from '../../components/tools/form';
 
 import { loginFormSchema } from './types/login.types';
@@ -32,11 +32,11 @@ const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
         submitButtonText="Acessar"
         handleSubmit={handleSubmit}
       />
-      <Toast
+      {/* <Toast
         content={toast?.content || 'Login toast'}
         type={toast?.type || 'info'}
         visible={!!toast}
-      />
+      /> */}
       <Text
         style={{
           fontSize: 12,

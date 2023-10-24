@@ -28,11 +28,22 @@ const Button: React.FC<ButtonProps> = ({
       ]}>
       {!!icon && (
         <>
-          {isLoading ? <ActivityIndicator style={styles.loader} color={styles.loader.color} /> : <Icon />}
+          {isLoading ? (
+            <ActivityIndicator
+              style={styles.loader}
+              color={styles.loader.color}
+            />
+          ) : (
+            <Icon />
+          )}
         </>
       )}
       {isLoading && !hasIcon && (
-        <ActivityIndicator style={styles.loader} color={styles.loader.color} size={'small'} />
+        <ActivityIndicator
+          style={styles.loader}
+          color={styles.loader.color}
+          size={'small'}
+        />
       )}
       {!!content && (!isLoading || (!isLoading && hasIcon)) && (
         <Text style={styles.text}>{content}</Text>
