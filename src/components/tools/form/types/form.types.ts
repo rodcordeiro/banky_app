@@ -22,8 +22,8 @@ export interface iFormProps<T extends FieldValues> {
   handleSubmit: (data: T) => void | Promise<void>;
   zodSchema?: z.Schema<T>;
   submitButtonText?: string;
-  isLoading?: boolean;
   actions?: ButtonProps[];
+  isLoading?: boolean;
   //   customAction1?: Omit<ButtonProps, "isLoading">;
   //   customAction2?: Omit<ButtonProps, "isLoading">;
 }

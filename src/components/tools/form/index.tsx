@@ -16,9 +16,7 @@ function Form<T extends FieldValues>({
   submitButtonText,
   isLoading,
   actions,
-}: //   customAction1,
-//   customAction2,
-iFormProps<T>) {
+}: iFormProps<T>) {
   const methods = useForm<T>({
     resolver: zodSchema ? zodResolver(zodSchema) : undefined,
   });
@@ -30,12 +28,12 @@ iFormProps<T>) {
       <FormProvider {...methods}>
         {inputs.map((input, index) => mapInputs(input, index))}
 
-        {!!actions && actions.map((action) => <Button {...action} />)}
         <Button
           onPress={handleHookFormSubmit(handleSubmit)}
           isLoading={isLoading}
           content={submitButtonText || 'Enviar'}
         />
+        {!!actions && actions.map((action) => <Button {...action} />)}
       </FormProvider>
     </View>
   );

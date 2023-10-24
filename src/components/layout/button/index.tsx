@@ -8,6 +8,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   onPress,
   isLoading = false,
+  disabled = false,
   customBackground,
   ...rest
 }) => {
@@ -24,13 +25,16 @@ const Button: React.FC<ButtonProps> = ({
       {...rest}
       style={[
         styles.container,
-        !!customBackground && { backgroundColor: customBackground },
+        {
+          backgroundColor: disabled
+            ? '#9d7eba'
+            : customBackground || styles.container.backgroundColor,
+        },
       ]}>
       {!!icon && (
         <>
           {isLoading ? (
             <ActivityIndicator
-              style={styles.loader}
               color={styles.loader.color}
             />
           ) : (
@@ -40,7 +44,6 @@ const Button: React.FC<ButtonProps> = ({
       )}
       {isLoading && !hasIcon && (
         <ActivityIndicator
-          style={styles.loader}
           color={styles.loader.color}
           size={'small'}
         />

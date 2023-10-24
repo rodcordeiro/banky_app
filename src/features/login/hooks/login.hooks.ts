@@ -32,7 +32,9 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
         console.log(err);
         dispatch(loginError());
         setToast({
-          content: 'Falha ao logar',
+          content: `API: ${api.defaults.baseURL}/v1/auth/login\nErr: ${
+            err.message
+          }\nbody:${JSON.stringify(data)}`,
           type: 'error',
           visible: true,
         });

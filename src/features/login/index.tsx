@@ -32,6 +32,7 @@ const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
         submitButtonText="Acessar"
         handleSubmit={handleSubmit}
       />
+      <Text>{toast?.content || 'Login toast'}</Text>
       {/* <Toast
         content={toast?.content || 'Login toast'}
         type={toast?.type || 'info'}
