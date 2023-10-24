@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useFormContext, Controller } from 'react-hook-form';
 
 import { getErrorMessage } from '../../utils/get-errors.util';
-import { SelectProps } from './types/input.types';
+import { SelectProps, SelectOption } from './types/input.types';
 import { styles } from './styles';
 
 const Select = ({
@@ -14,7 +14,7 @@ const Select = ({
   labelProp,
   valueProp,
   ...rest
-}: SelectProps<any>) => {
+}: SelectProps) => {
   const {
     clearErrors,
     setValue,
@@ -29,6 +29,7 @@ const Select = ({
     [errors, stringfyedName],
   );
   console.log({ options, labelProp, valueProp });
+
   const handleOptionChange = React.useCallback(
     (newText: any, onChange: (...event: any[]) => void) => {
       clearErrors();
@@ -57,8 +58,8 @@ const Select = ({
               return (
                 <Picker.Item
                   key={index}
-                  //   label={labelProp ? option[labelProp] : option}
-                  label="JavaScript"
+                  label={option.label}
+                  // label="JavaScript"
                   value="js"
                 />
               );
@@ -78,4 +79,4 @@ const Select = ({
   );
 };
 
-export { Select, SelectProps };
+export { Select, SelectProps, SelectOption };
