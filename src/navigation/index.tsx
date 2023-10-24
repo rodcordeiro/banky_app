@@ -1,51 +1,43 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from "../features/home";
-import LoginScreen from "../features/login";
-import {
-  AuthenticatedRootStackParamList,
-  RootStackParamList,
-} from "../@types/navigation";
+import { api } from '../core/api';
+
+import LoginScreen from '../features/login';
+
+import { AuthenticatedNavigation } from './authenticated.routes';
+import { useRedux } from '../hooks';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-const Drawer = createDrawerNavigator<AuthenticatedRootStackParamList>();
-const AuthenticatedNavigation = () => (
-  <Drawer.Navigator
-    initialRouteName="Home"
-    screenOptions={{
-      drawerStatusBarAnimation: "slide",
-    }}
-  >
-    <Drawer.Screen
-      name="Home"
-      component={HomeScreen}
-      options={{
-        headerTitle: "",
-        headerBackgroundContainerStyle: {
-          backgroundColor: "transparent",
-        },
-      }}
-    />
-  </Drawer.Navigator>
-);
 
 export const Navigator = () => {
+  const auth = useRedux().useAppSelector((state) => state.auth);
+  const authenticated =
+    auth.access_token &&
+    auth.expiration &&
+    auth.expiration.toString() > Date.now().toString();
+
+  if (authenticated) {
+    api.defaults.headers.Authorization = 'Bearer ' + auth.access_token;
+  }
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName="Login"
-      >
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen
-          name="Authenticated"
-          component={AuthenticatedNavigation}
-        />
-      </Stack.Navigator>
+      {!authenticated ? (
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="Login">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen
+            name="Authenticated"
+            component={AuthenticatedNavigation}
+          />
+        </Stack.Navigator>
+      ) : (
+        <AuthenticatedNavigation />
+      )}
     </NavigationContainer>
   );
 };

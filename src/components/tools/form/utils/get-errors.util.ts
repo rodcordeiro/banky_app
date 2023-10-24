@@ -5,7 +5,7 @@ export function getErrorMessage(obj: Record<string, any>, path: string) {
       .filter(Boolean)
       .reduce(
         (res, key) => (res !== null && res !== undefined ? res[key] : res),
-        obj
+        obj,
       );
 
   const result = travel(/[,[\]]+?/) || travel(/[,[\].]+?/);

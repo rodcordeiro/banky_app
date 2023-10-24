@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightblue",
-    maxHeight: 300,
-    width: "80%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    gap: 10,
   },
 });

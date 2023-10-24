@@ -1,10 +1,13 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>We're at home!</Text>
+      <View style={styles.welcomeContainer}>
+        <Text style={styles.welcomeMessage}>Bem vindo de volta,</Text>
+        <Text style={styles.username}>USUARIO</Text>
+      </View>
     </View>
   );
 };
@@ -12,9 +15,21 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f00",
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
+  welcomeContainer: {
+    top: 25,
+    left: 40,
+  },
+  welcomeMessage: {
+    fontSize: 18,
+    fontWeight: '200',
+    fontStyle: 'italic',
+  },
+  username: {
+    fontSize: 24,
+    left: 5,
   },
 });
 

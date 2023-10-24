@@ -1,19 +1,20 @@
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
   type RootStackParamList = {
     Login: undefined;
     Authenticated: undefined;
-  };
 
-  type AuthenticatedRootStackParamList = {
     Home: undefined;
+    Accounts: undefined;
+    AccountsHome: undefined;
+    AccountView: {
+      id: string;
+    };
   };
 
-  type ScreenProps<
-    T extends keyof (RootStackParamList & AuthenticatedRootStackParamList)
-  > = NativeStackScreenProps<
-    RootStackParamList & AuthenticatedRootStackParamList,
+  type ScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<
+    RootStackParamList,
     T
   >;
 }

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "@banky/app",
+    "name": "Banky",
     "slug": "banky",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#8A2BE2"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -25,7 +25,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#8A2BE2"
       },
       "package": "com.rodcordeiro.mytodo",
       "versionCode": 1
@@ -37,6 +37,9 @@
       "eas": {
         "projectId": "64a19d11-6df9-40e6-b7ef-d5b6f893c294"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

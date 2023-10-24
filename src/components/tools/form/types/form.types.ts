@@ -1,20 +1,28 @@
-import { z } from "zod";
-import { FieldValues } from "react-hook-form";
+import { z } from 'zod';
+import { FieldValues } from 'react-hook-form';
 
-// import { ButtonProps } from '@/components/layout/Button';
+import { ButtonProps } from '../../../layout/button';
 
-import { InputProps } from "../components/input";
+import { InputProps } from '../components/input';
+import { SelectOption, SelectProps } from '../components/select';
 
-export type Input<T> = {
-  name: keyof T;
-  type: InputProps["type"];
-} & Omit<InputProps, "name" | "type">;
+export type Input<T> =
+  | ({
+      name: keyof T;
+      type: InputProps['type'];
+    } & Omit<InputProps, 'name' | 'type'>)
+  | ({
+      name: keyof T;
+      type: 'select';
+      options: SelectOption[];
+    } & Omit<SelectProps, 'name' | 'type'>);
 
 export interface iFormProps<T extends FieldValues> {
   inputs: Input<T>[];
   handleSubmit: (data: T) => void | Promise<void>;
   zodSchema?: z.Schema<T>;
   submitButtonText?: string;
+  actions?: ButtonProps[];
   isLoading?: boolean;
   //   customAction1?: Omit<ButtonProps, "isLoading">;
   //   customAction2?: Omit<ButtonProps, "isLoading">;
