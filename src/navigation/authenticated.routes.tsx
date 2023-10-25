@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import { View, Dimensions } from 'react-native';
 
 import { store } from '@/redux/store.redux';
-import { logOut } from '@/redux/actions.redux';
+import { logOut, resetUser } from '@/redux/actions.redux';
 
 import HomeScreen from '@/features/home';
 
@@ -41,7 +41,10 @@ export const AuthenticatedNavigation = () => {
             <Button
               content="Logoff"
               style={{ position: 'absolute', bottom: 10, width: '80%' }}
-              onPress={() => dispatch(logOut())}
+              onPress={() => {
+                dispatch(logOut());
+                dispatch(resetUser());
+              }}
             />
           </DrawerContentScrollView>
         </View>

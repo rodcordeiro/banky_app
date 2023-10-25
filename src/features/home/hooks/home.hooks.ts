@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { useRedux } from '@/hooks';
-import { GetUserRequest } from '../api/home.requests';
 import { store } from '@/redux/store.redux';
 import { defineUser } from '@/redux/actions.redux';
+
+import { GetUserRequest } from '../api/home.requests';
 
 export function useHomeHook() {
   const user = useRedux().useAppSelector((state) => state.user);
