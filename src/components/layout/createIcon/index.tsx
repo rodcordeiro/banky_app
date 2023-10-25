@@ -1,6 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-// import { useNavigation } from '@react-navigation/native';
+// import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 type Props = {
   check: keyof RootStackParamList;
@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const CreateIcon: React.FC<Props> = ({ check, destiny }) => {
-  //   const { navigate } = useNavigation();
+  // const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <Feather
@@ -21,5 +21,9 @@ export const CreateIcon: React.FC<Props> = ({ check, destiny }) => {
       }}
     />
   );
-  //   return <Feather name="plus-circle" onPress={() => navigate<any>(destiny)} />;
+  // return <Feather name="plus-circle" onPress={() => navigate<any>(destiny)} size={20}
+  //     style={{
+  //       padding: 5,
+  //       right: 15,
+  //     }}/>;
 };

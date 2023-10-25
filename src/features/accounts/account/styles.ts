@@ -1,5 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
+const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -7,6 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   accountContainer: {
+    alignItems: 'center',
     width: '90%',
     height: '90%',
     backgroundColor: '#fff',
@@ -14,10 +16,12 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   header: {
-    width: '100%',
+    width: width*0.9,
     padding: 10,
   },
   accountHeader: {
+    width: width*0.9,
+    marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',

@@ -11,15 +11,12 @@ import { AuthenticatedNavigation } from './authenticated.routes';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Navigator = () => {
-  const auth = useRedux().useAppSelector((state) => state.auth);
-  const authenticated =
-    auth.access_token &&
-    auth.expiration &&
-    auth.expiration.toString() > Date.now().toString();
-
-  if (authenticated) {
-    api.defaults.headers.Authorization = 'Bearer ' + auth.access_token;
-  }
+  const authenticated = useRedux().useAppSelector(
+    ({ auth }) =>
+      !!auth.access_token &&
+      !!auth.expiration &&
+      auth.expiration.toString() > Date.now().toString(),
+  );
 
   return (
     <NavigationContainer>

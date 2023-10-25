@@ -10,6 +10,7 @@ import { AccountsTypes } from '@/features/accounts/types/accounts.types';
 import { useAccountViewHook } from './hook/account.hook';
 import { styles } from './styles';
 import { AccountEditFormSchema } from './types/account.types';
+import { SelectOption } from '@/components/tools/form/components/select';
 
 const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
   route,
@@ -69,37 +70,39 @@ const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
               />
             </View>
           </View>
-          {account && (
-            <Form
-              handleSubmit={(data) => console.log({ data })}
-              zodSchema={AccountEditFormSchema}
-              submitButtonText="Editar"
-              inputs={[
-                {
-                  name: 'type',
-                  type: 'select',
-                  options: [
-                    {
-                      label: 'Dinheiro',
-                      value: AccountsTypes.AccountType.CASH,
-                    },
-                    {
-                      label: 'Debito',
-                      value: AccountsTypes.AccountType.DEBIT,
-                    },
-                    {
-                      label: 'Crédito',
-                      value: AccountsTypes.AccountType.CREDIT,
-                    },
-                    {
-                      label: 'Crédito e Débito',
-                      value: AccountsTypes.AccountType.CREDIT_AND_DEBIT,
-                    },
-                  ],
-                },
-              ]}
-            />
-          )}
+          <Form
+            handleSubmit={(data) => console.log({ data })}
+            zodSchema={AccountEditFormSchema}
+            submitButtonText="Editar"
+            inputs={[
+              {
+                name: 'type',
+                type: 'select',
+                defaultValue: {
+                  label: account?.type,
+                  value: account?.type,
+                } as any,
+                options: [
+                  {
+                    label: 'Dinheiro',
+                    value: AccountsTypes.AccountType.CASH,
+                  },
+                  {
+                    label: 'Debito',
+                    value: AccountsTypes.AccountType.DEBIT,
+                  },
+                  {
+                    label: 'Crédito',
+                    value: AccountsTypes.AccountType.CREDIT,
+                  },
+                  {
+                    label: 'Crédito e Débito',
+                    value: AccountsTypes.AccountType.CREDIT_AND_DEBIT,
+                  },
+                ],
+              },
+            ]}
+          />
         </View>
       )}
     </View>
