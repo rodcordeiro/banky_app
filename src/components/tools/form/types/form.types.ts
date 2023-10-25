@@ -5,6 +5,7 @@ import { ButtonProps } from '@/components/layout/button';
 
 import { InputProps } from '../components/input';
 import { SelectOption, SelectProps } from '../components/select';
+import { StyleProp, ViewStyle } from 'react-native';
 
 export type Input<T> =
   | ({
@@ -24,6 +25,5 @@ export interface iFormProps<T extends FieldValues> {
   submitButtonText?: string;
   actions?: ButtonProps[];
   isLoading?: boolean;
-  //   customAction1?: Omit<ButtonProps, "isLoading">;
-  //   customAction2?: Omit<ButtonProps, "isLoading">;
+  style?: StyleProp<ViewStyle>;
 }

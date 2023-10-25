@@ -10,9 +10,11 @@ import { persistReducer } from 'redux-persist';
 import createSecureStore from 'redux-persist-expo-securestore';
 
 import authSlice from './slices/auth/auth.slice';
+import userSlice from './slices/user/user.slice';
 
 const reducer = combineReducers({
   auth: authSlice,
+  user: userSlice,
 });
 
 const storage = createSecureStore();

@@ -16,6 +16,7 @@ function Form<T extends FieldValues>({
   submitButtonText,
   isLoading,
   actions,
+  style,
 }: iFormProps<T>) {
   const methods = useForm<T>({
     resolver: zodSchema ? zodResolver(zodSchema) : undefined,
@@ -24,7 +25,7 @@ function Form<T extends FieldValues>({
   const { handleSubmit: handleHookFormSubmit } = methods;
 
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, style]}>
       <FormProvider {...methods}>
         {inputs.map((input, index) => mapInputs(input, index))}
 

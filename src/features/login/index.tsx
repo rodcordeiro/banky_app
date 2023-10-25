@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 import { version } from '@/../package.json';
 // import { Toast } from '../../components/layout/toast';
@@ -10,7 +10,7 @@ import { styles } from './styles';
 import { useLoginHook } from './hooks/login.hooks';
 
 const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
-  const { loading, handleSubmit, toast } = useLoginHook(navigation);
+  const { loading, handleSubmit, toast, errorProps } = useLoginHook(navigation);
   return (
     <View style={styles.container}>
       <Form
@@ -32,7 +32,7 @@ const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
         submitButtonText="Acessar"
         handleSubmit={handleSubmit}
       />
-      <Text>{toast?.content || 'Login toast'}</Text>
+      <Text selectable>{!!errorProps && JSON.stringify(errorProps)}</Text>
       {/* <Toast
         content={toast?.content || 'Login toast'}
         type={toast?.type || 'info'}

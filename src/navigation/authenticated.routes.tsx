@@ -4,7 +4,7 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { Feather } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 
 import { store } from '@/redux/store.redux';
 import { logOut } from '@/redux/actions.redux';
@@ -13,12 +13,13 @@ import HomeScreen from '@/features/home';
 
 import { Button } from '@/components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
+import { CreateIcon } from '@/components/layout/createIcon';
 
 const Drawer = createDrawerNavigator<RootStackParamList>();
 
 export const AuthenticatedNavigation = () => {
   const dispatch = store.dispatch;
-
+  const { height } = Dimensions.get('window');
   return (
     <Drawer.Navigator
       initialRouteName="Home"
@@ -34,7 +35,7 @@ export const AuthenticatedNavigation = () => {
         swipeEdgeWidth: 50,
       }}
       drawerContent={(props) => (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, height }}>
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             <Button
@@ -61,9 +62,11 @@ export const AuthenticatedNavigation = () => {
         component={AccountsRoutes}
         options={{
           headerTitle: '',
-
           drawerIcon: ({ size, color }) => (
             <Feather name="credit-card" color={color} size={size * 0.8} />
+          ),
+          headerRight: () => (
+            <CreateIcon check="Accounts" destiny="AccountsCreate" />
           ),
         }}
       />

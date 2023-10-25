@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useHomeHook } from './hooks/home.hooks';
+
 const HomeScreen = () => {
+  const { user } = useHomeHook();
+
   return (
     <View style={styles.container}>
       <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeMessage}>Bem vindo de volta,</Text>
-        <Text style={styles.username}>USUARIO</Text>
+        <Text style={styles.username}>{user.name || 'USUARIO'}</Text>
       </View>
     </View>
   );
