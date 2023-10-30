@@ -39,7 +39,7 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
 
         dispatch(login(response.data));
 
-        navigate('Authenticated');
+        // navigate('Authenticated');
       })
       .catch((err: AxiosError) => {
         dispatch(loginError());
