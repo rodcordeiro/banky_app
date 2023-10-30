@@ -14,7 +14,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@hookform/resolvers": "^3.3.2",
-    "@react-native-picker/picker": "2.4.10",
+    "@react-native-picker/picker": "2.5.1",
     "@react-navigation/drawer": "^6.6.4",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
