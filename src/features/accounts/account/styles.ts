@@ -16,11 +16,11 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   header: {
-    width: width*0.9,
+    width: width * 0.9,
     padding: 10,
   },
   accountHeader: {
-    width: width*0.9,
+    width: width * 0.9,
     marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'space-between',

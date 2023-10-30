@@ -10,7 +10,7 @@ import { styles } from './styles';
 import { useLoginHook } from './hooks/login.hooks';
 
 const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
-  const { loading, handleSubmit, toast, errorProps } = useLoginHook(navigation);
+  const { loading, handleSubmit, errorProps } = useLoginHook(navigation);
   return (
     <View style={styles.container}>
       <Form
@@ -33,11 +33,7 @@ const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
         handleSubmit={handleSubmit}
       />
       <Text selectable>{!!errorProps && JSON.stringify(errorProps)}</Text>
-      {/* <Toast
-        content={toast?.content || 'Login toast'}
-        type={toast?.type || 'info'}
-        visible={!!toast}
-      /> */}
+
       <Text
         style={{
           fontSize: 12,
