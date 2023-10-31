@@ -11,6 +11,7 @@ import { AccountsTypes } from '@/features/accounts/types/accounts.types';
 import { useAccountsHook } from './hooks/accounts.hook';
 
 import { Account } from './components/account';
+import { CreateButton } from './components/create';
 
 const AccountsScreen: React.FC<ScreenProps<'AccountsHome'>> = ({
   navigation,
@@ -33,6 +34,7 @@ const AccountsScreen: React.FC<ScreenProps<'AccountsHome'>> = ({
           style={styles.accountsContainer}
         />
       )}
+      <CreateButton />
     </View>
   );
 };
