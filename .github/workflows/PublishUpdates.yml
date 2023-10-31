@@ -30,7 +30,7 @@ jobs:
           eas-version: latest
           eas-cache: true
           token: ${{ secrets.EXPO_TOKEN }}
-      - run: npm install
+      - run: npm install --force
         name: Install dependencies
       - run: eas update --channel=production --message "${{ github.event.head_commit.message }}"
   GenerateNewBuild:
@@ -47,5 +47,5 @@ jobs:
           eas-version: latest
           eas-cache: true
           token: ${{ secrets.EXPO_TOKEN }}
-      - run: npm install
+      - run: npm install --force
       - run: eas build -p android --profile production
