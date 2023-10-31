@@ -2,27 +2,18 @@ import React from 'react';
 import { Native as Sentry } from 'sentry-expo';
 import { AxiosError } from 'axios';
 
-import { ToastProps } from '@/components/layout/toast';
 import { api } from '@/core/api';
 import { store } from '@/redux/store.redux';
-import {
-  login,
-  loginError,
-  loginStart,
-  defineUser,
-} from '@/redux/actions.redux';
+import { login, loginError, loginStart } from '@/redux/actions.redux';
 
 import { LoginFormType } from '@/features/login/types/login.types';
-import {
-  LoginRequest,
-  GetUserRequest,
-} from '@/features/login/api/login.requests';
+import { LoginRequest } from '@/features/login/api/login.requests';
 
 export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [toast, setToast] = React.useState<ToastProps>();
   const [errorProps, setErrorProps] = React.useState<any>();
   const dispatch = store.dispatch;
+
   const handleSubmit = React.useCallback(async (data: LoginFormType) => {
     setLoading(true);
     dispatch(loginStart());
@@ -58,5 +49,5 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
       .finally(() => setLoading(false));
   }, []);
 
-  return { loading, handleSubmit, toast, errorProps };
+  return { loading, handleSubmit, errorProps };
 }

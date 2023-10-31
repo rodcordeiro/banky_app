@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-import { Button } from '@/components/layout/button';
 import { Form } from '@/components/tools/form';
 
 import { AccountsTypes } from '@/features/accounts/types/accounts.types';
@@ -10,14 +9,15 @@ import { AccountsTypes } from '@/features/accounts/types/accounts.types';
 import { useAccountViewHook } from './hook/account.hook';
 import { styles } from './styles';
 import { AccountEditFormSchema } from './types/account.types';
-import { SelectOption } from '@/components/tools/form/components/select';
 
 const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
   route,
   navigation,
 }) => {
   const { params } = route;
-  const { account, loading } = useAccountViewHook({ id: params.id });
+  const { account, loading, handleDelete } = useAccountViewHook({
+    id: params.id,
+  });
   const { enablesCash, enablesCredit, enablesDebit } = React.useMemo(() => {
     const enablesCash = account?.type === AccountsTypes.AccountType.CASH;
     const enablesDebit =
@@ -100,6 +100,13 @@ const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
                     value: AccountsTypes.AccountType.CREDIT_AND_DEBIT,
                   },
                 ],
+              },
+            ]}
+            actions={[
+              {
+                content: 'Excluir',
+                customBackground: '#c00',
+                onPress: handleDelete,
               },
             ]}
           />

@@ -13,7 +13,6 @@ import HomeScreen from '@/features/home';
 
 import { Button } from '@/components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
-import { CreateIcon } from '@/components/layout/createIcon';
 
 const Drawer = createDrawerNavigator<RootStackParamList>();
 
@@ -68,8 +67,15 @@ export const AuthenticatedNavigation = () => {
           drawerIcon: ({ size, color }) => (
             <Feather name="credit-card" color={color} size={size * 0.8} />
           ),
-          headerRight: () => (
-            <CreateIcon check="Accounts" destiny="AccountsCreate" />
+        }}
+      />
+      <Drawer.Screen
+        name="Bills"
+        component={AccountsRoutes}
+        options={{
+          headerTitle: '',
+          drawerIcon: ({ size, color }) => (
+            <Feather name="file-text" color={color} size={size * 0.8} />
           ),
         }}
       />

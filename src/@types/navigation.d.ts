@@ -7,21 +7,21 @@ declare global {
     Authenticated: undefined;
 
     Home: undefined;
-    
+
     Accounts: undefined;
     AccountsHome: undefined;
     AccountsCreate: undefined;
     AccountView: {
       id: string;
     };
-    
+
     Bills: undefined;
     BillsHome: undefined;
     BillsCreate: undefined;
     BillView: {
       id: string;
     };
-    
+
     Expenses: undefined;
     ExpensesHome: undefined;
     ExpensesCreate: undefined;
