@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
 import BillsHomeScreen from '@/features/bills/home';
 import BillViewScreen from '@/features/bills/view';
 const Stack = createNativeStackNavigator<RootStackParamList>();
