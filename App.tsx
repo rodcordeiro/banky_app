@@ -4,6 +4,7 @@ import * as Updates from 'expo-updates';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Sentry from 'sentry-expo';
 import Banky from './src';
+import { promiseWithTimeout } from '@/utils/promise.util';
 
 function App() {
   React.useLayoutEffect(() => {
@@ -17,9 +18,10 @@ function App() {
         await Updates.fetchUpdateAsync();
         await Updates.reloadAsync();
       }
-      SplashScreen.hideAsync();
     }
-    updateApp();
+    promiseWithTimeout(updateApp(), 15000).finally(() =>
+      SplashScreen.hideAsync(),
+    );
   }, []);
 
   return <Banky />;
