@@ -13,6 +13,7 @@ import HomeScreen from '@/features/home';
 
 import { Button } from '@/components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
+import { BillsRoutes } from './bills.routes';
 
 const Drawer = createDrawerNavigator<RootStackParamList>();
 
@@ -71,7 +72,7 @@ export const AuthenticatedNavigation = () => {
       />
       <Drawer.Screen
         name="Bills"
-        component={AccountsRoutes}
+        component={BillsRoutes}
         options={{
           headerTitle: '',
           drawerIcon: ({ size, color }) => (
