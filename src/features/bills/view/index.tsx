@@ -13,6 +13,7 @@ import { useBillViewHook } from './hook/bill.hook';
 import { styles } from './styles';
 import { ExpenseItem } from './components/Expense';
 import { Chart } from './components/Chart';
+import { EditButton } from './components/edit';
 
 const BillViewScreen: React.FC<ScreenProps<'BillView', true>> = ({
   route,
@@ -50,7 +51,12 @@ const BillViewScreen: React.FC<ScreenProps<'BillView', true>> = ({
             <View style={styles.accountTitle}>
               <Text style={styles.accountTitleLabel}>Valor médio:</Text>
               <Text style={styles.accountTitleText}>
-                R$ {bill?.averageValue}
+                R${' '}
+                {bill?.averageValue
+                  ? isNaN(+bill?.averageValue)
+                    ? 0
+                    : bill?.averageValue
+                  : 0}
               </Text>
             </View>
           </View>
@@ -66,7 +72,10 @@ const BillViewScreen: React.FC<ScreenProps<'BillView', true>> = ({
             )}
             style={styles.list}
           />
-          {bill?.expenses && <Chart expenses={bill.expenses} />}
+          {bill?.expenses && bill.expenses.length > 0 && (
+            <Chart expenses={bill.expenses} />
+          )}
+          <EditButton />
         </View>
       )}
     </View>

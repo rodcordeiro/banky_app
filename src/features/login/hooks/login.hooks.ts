@@ -24,7 +24,6 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
       category: 'User authentication payload',
       message: JSON.stringify(data),
     });
-
     await LoginRequest(data)
       .then(async (response) => {
         api.defaults.headers.Authorization =
@@ -39,7 +38,7 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
       .catch((err: AxiosError) => {
         dispatch(loginError());
         showToast({
-          content: `Falha ao acessar. ERR_CODE: ${err.status}`,
+          content: `Falha ao acessar. ERR_MSG: ${err.message}`,
           type: 'error',
         });
         setErrorProps({

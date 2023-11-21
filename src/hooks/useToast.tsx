@@ -32,8 +32,9 @@ export function ToastHook({ children }: React.PropsWithChildren) {
           showToast,
           cancelToast,
         }}>
-        {toasts.map((toast) => (
+        {toasts.map((toast, idx) => (
           <Toast
+            key={`toast_idx_${idx}`}
             {...toast}
             onCancel={() => {
               if (toast.onCancel) {

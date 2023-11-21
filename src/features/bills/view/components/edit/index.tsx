@@ -3,15 +3,15 @@ import { Feather } from '@expo/vector-icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
-export const CreateButton = () => {
+export const EditButton = () => {
   const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <View style={styles.button}>
       <Feather
-        name="plus"
+        name="edit-3"
         color={'white'}
         size={30}
-        onPress={() => navigate('BillsCreate')}
+        onPress={() => console.log('BillsCreate')}
       />
     </View>
   );
