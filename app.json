@@ -8,8 +8,6 @@
     "primaryColor": "#8A2BE2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "privacy": "public",
-    "owner": "rodcordeiro",
     "userInterfaceStyle": "light",
 
     "splash": {

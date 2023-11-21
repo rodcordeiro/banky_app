@@ -1,6 +1,5 @@
 import { FieldValues } from 'react-hook-form';
 
-import { InputProps } from '../components/input';
 import { Input } from '../components/input';
 import { Input as InputType } from '../types/form.types';
 import { Select } from '../components/select';
