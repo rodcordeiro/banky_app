@@ -4,25 +4,35 @@ import * as Updates from 'expo-updates';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Sentry from 'sentry-expo';
 import Banky from './src';
-import { promiseWithTimeout } from '@/utils/promise.util';
+
+SplashScreen.preventAutoHideAsync();
 
 function App() {
+  const [loaded, setLoaded] = React.useState<boolean>(false);
+
   React.useLayoutEffect(() => {
     async function updateApp() {
-      if (process.env.NODE_ENV === 'development') {
-        return;
-      }
-      SplashScreen.preventAutoHideAsync();
-      const { isAvailable } = await Updates.checkForUpdateAsync();
-      if (isAvailable) {
-        await Updates.fetchUpdateAsync();
-        await Updates.reloadAsync();
+      try {
+        if (process.env.NODE_ENV === 'development') {
+          setLoaded(true);
+          return;
+        }
+        const { isAvailable } = await Updates.checkForUpdateAsync();
+        if (isAvailable) {
+          await Updates.fetchUpdateAsync();
+          await Updates.reloadAsync();
+        }
+      } catch (err) {
+        Sentry.Native.captureException(err);
+      } finally {
+        setLoaded(true);
+        SplashScreen.hideAsync();
       }
     }
-    promiseWithTimeout(updateApp(), 15000).finally(() =>
-      SplashScreen.hideAsync(),
-    );
+    updateApp();
   }, []);
+
+  if (!loaded) return null;
 
   return <Banky />;
 }
