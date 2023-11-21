@@ -12,8 +12,9 @@ import { LineChart } from 'react-native-chart-kit';
 import { useBillViewHook } from './hook/bill.hook';
 import { styles } from './styles';
 import { ExpenseItem } from './components/Expense';
+import { Chart } from './components/Chart';
 
-const BillViewScreen: React.FC<ScreenProps<'BillView'>> = ({
+const BillViewScreen: React.FC<ScreenProps<'BillView', true>> = ({
   route,
   navigation,
 }) => {
@@ -65,46 +66,7 @@ const BillViewScreen: React.FC<ScreenProps<'BillView'>> = ({
             )}
             style={styles.list}
           />
-          {bill?.expenses && (
-            <LineChart
-              data={{
-                labels: bill.expenses.map((expense) =>
-                  new Date(expense.createdAt).toLocaleDateString(),
-                ),
-                datasets: [
-                  {
-                    data: bill.expenses.map((expense) => +expense.value),
-                  },
-                ],
-              }}
-              width={Dimensions.get('window').width * 0.75} // from react-native
-              height={200}
-              yAxisLabel="R$"
-              yAxisInterval={1} // optional, defaults to 1
-              chartConfig={{
-                backgroundColor: '#f0f0f0',
-                backgroundGradientFrom: '#8A2BE2',
-                backgroundGradientTo: '#ffa726',
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                  padding: 10,
-                },
-                propsForDots: {
-                  r: '6',
-                  strokeWidth: '2',
-                  stroke: '#a552f3',
-                },
-              }}
-              bezier
-              style={{
-                marginVertical: 8,
-                borderRadius: 16,
-              }}
-            />
-          )}
+          {bill?.expenses && <Chart expenses={bill.expenses} />}
         </View>
       )}
     </View>

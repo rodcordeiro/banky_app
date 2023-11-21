@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
+  RefreshControl,
   View,
   FlatList,
   ActivityIndicator,
@@ -13,10 +13,10 @@ import { useAccountsHook } from './hooks/accounts.hook';
 import { Account } from './components/account';
 import { CreateButton } from './components/create';
 
-const AccountsScreen: React.FC<ScreenProps<'AccountsHome'>> = ({
+const AccountsScreen: React.FC<ScreenProps<'AccountsHome', true>> = ({
   navigation,
 }) => {
-  const { loading, accounts } = useAccountsHook();
+  const { loading, accounts, ReloadAccounts } = useAccountsHook();
   return (
     <View style={styles.container}>
       {loading ? (
@@ -24,6 +24,9 @@ const AccountsScreen: React.FC<ScreenProps<'AccountsHome'>> = ({
       ) : (
         <FlatList<AccountsTypes.Account>
           data={accounts}
+          refreshControl={
+            <RefreshControl refreshing={loading} onRefresh={ReloadAccounts} />
+          }
           renderItem={({ item }) => (
             <Account
               {...item}

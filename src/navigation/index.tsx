@@ -1,14 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { api } from '@/core/api';
 import { useRedux } from '@/hooks';
 
 import LoginScreen from '@/features/login';
 
 import { AuthenticatedNavigation } from './authenticated.routes';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<PublicRoutesParamList>();
 
 export const Navigator = () => {
   const authenticated = useRedux().useAppSelector(

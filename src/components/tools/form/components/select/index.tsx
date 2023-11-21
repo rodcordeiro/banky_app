@@ -32,6 +32,13 @@ const Select = ({
     (value: any, onChange: (...event: any[]) => void) => {
       clearErrors();
 
+      if (value === 'PLACEHOLDER') {
+        setError(
+          'Por favor, selecione uma opção válida.',
+          new Error('Por favor, selecione uma opção válida.'),
+        );
+        return;
+      }
       const newValue = options?.find((option) => option.value === value);
 
       if (onChangeOption) onChangeOption(newValue!);
@@ -52,15 +59,17 @@ const Select = ({
             onValueChange={(itemValue, _) =>
               handleOptionChange(itemValue, field.onChange)
             }>
-            {options?.map((option, index) => {
-              return (
-                <Picker.Item
-                  key={index}
-                  label={option.label.toString()}
-                  value={option.value}
-                />
-              );
-            })}
+            {[{ label: 'Selecione uma opção', value: 'PLACEHOLDER' }, options]
+              .flat(1)
+              .map((option, index) => {
+                return (
+                  <Picker.Item
+                    key={index}
+                    label={option.label.toString()}
+                    value={option.value}
+                  />
+                );
+              })}
           </Picker>
           {!!fieldError && (
             <View>

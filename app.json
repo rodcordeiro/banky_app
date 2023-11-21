@@ -3,8 +3,6 @@
     "name": "Banky",
     "slug": "banky",
     "description": "A financial assistant app",
-    "owner": "rodcordeiro",
-    "privacy": "public",
     "githubUrl": "https://github.com/rodcordeiro/banky",
     "backgroundColor": "#8A2BE2",
     "primaryColor": "#8A2BE2",

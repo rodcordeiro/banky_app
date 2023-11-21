@@ -14,8 +14,9 @@ import HomeScreen from '@/features/home';
 import { Button } from '@/components/layout/button';
 import { AccountsRoutes } from './accounts.routes';
 import { BillsRoutes } from './bills.routes';
+import { DrawerMenu } from '@/components/layout/Drawer';
 
-const Drawer = createDrawerNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator<AuthenticatedRoutesParamList>();
 
 export const AuthenticatedNavigation = () => {
   const dispatch = store.dispatch;
@@ -34,21 +35,7 @@ export const AuthenticatedNavigation = () => {
         swipeEnabled: true,
         swipeEdgeWidth: 50,
       }}
-      drawerContent={(props) => (
-        <View style={{ flex: 1, height }}>
-          <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
-            <Button
-              content="Logoff"
-              style={{ position: 'absolute', bottom: 10, width: '80%' }}
-              onPress={() => {
-                dispatch(logOut());
-                dispatch(resetUser());
-              }}
-            />
-          </DrawerContentScrollView>
-        </View>
-      )}>
+      drawerContent={(props) => <DrawerMenu {...props} />}>
       <Drawer.Screen
         name="Home"
         component={HomeScreen}

@@ -1,11 +1,12 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
-  type RootStackParamList = {
+  type PublicRoutesParamList = {
     Login: undefined;
     Register: undefined;
     Authenticated: undefined;
-
+  };
+  type AuthenticatedRoutesParamList = {
     Home: undefined;
 
     Accounts: undefined;
@@ -30,8 +31,13 @@ declare global {
     };
   };
 
-  type ScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<
-    RootStackParamList,
-    T
-  >;
+  type RootStackParamList = PublicRoutesParamList &
+    AuthenticatedRoutesParamList;
+
+  type ScreenProps<
+    T extends keyof RootStackParamList,
+    Authenticated = boolean,
+  > = Authenticated extends false
+    ? NativeStackScreenProps<PublicRoutesList, T>
+    : NativeStackScreenProps<AuthenticatedRoutesList, T>;
 }

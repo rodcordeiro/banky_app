@@ -8,10 +8,12 @@ import { login, loginError, loginStart } from '@/redux/actions.redux';
 
 import { LoginFormType } from '@/features/login/types/login.types';
 import { LoginRequest } from '@/features/login/api/login.requests';
+import { useToast } from '@/hooks';
 
 export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [errorProps, setErrorProps] = React.useState<any>();
+  const { showToast } = useToast();
   const dispatch = store.dispatch;
 
   const handleSubmit = React.useCallback(async (data: LoginFormType) => {
@@ -28,13 +30,18 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
         api.defaults.headers.Authorization =
           'Bearer ' + response.data.accessToken;
 
+        showToast({
+          content: 'Login bem sucedido!',
+          type: 'success',
+        });
         dispatch(login(response.data));
-
-        // navigate('Authenticated');
       })
       .catch((err: AxiosError) => {
         dispatch(loginError());
-
+        showToast({
+          content: `Falha ao acessar. ERR_CODE: ${err.status}`,
+          type: 'error',
+        });
         setErrorProps({
           payload: data,
           status: err.response?.status,
@@ -43,7 +50,6 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
           headers: err.response?.headers,
         });
         Sentry.captureException(err);
-
         console.error(err);
       })
       .finally(() => setLoading(false));

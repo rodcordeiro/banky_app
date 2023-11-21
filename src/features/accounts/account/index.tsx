@@ -10,7 +10,7 @@ import { useAccountViewHook } from './hook/account.hook';
 import { styles } from './styles';
 import { AccountEditFormSchema } from './types/account.types';
 
-const AccountViewScreen: React.FC<ScreenProps<'AccountView'>> = ({
+const AccountViewScreen: React.FC<ScreenProps<'AccountView', true>> = ({
   route,
   navigation,
 }) => {

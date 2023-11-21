@@ -5,8 +5,7 @@ import {
   Action,
 } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import { persistStore } from 'redux-persist';
-import { persistReducer } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
 import createSecureStore from 'redux-persist-expo-securestore';
 import { Native as Sentry } from 'sentry-expo';
 

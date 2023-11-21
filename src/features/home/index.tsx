@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useHomeHook } from './hooks/home.hooks';
 
-const HomeScreen = () => {
+const HomeScreen: React.FC<ScreenProps<'Home', true>> = () => {
   const { user } = useHomeHook();
 
   return (
