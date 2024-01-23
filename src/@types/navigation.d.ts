@@ -15,7 +15,6 @@ declare global {
     AccountView: {
       id: string;
     };
-
     Bills: undefined;
     BillsHome: undefined;
     BillsCreate: undefined;
