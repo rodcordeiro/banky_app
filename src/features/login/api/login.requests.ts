@@ -7,7 +7,7 @@ import {
 } from '@/features/login/types/login.types';
 
 export const LoginRequest = async (payload: LoginFormType) =>
-  await api.post<LoginFormType, AxiosResponse<LoginResponse>, AxiosError>(
+  await api.post<LoginResponse>(
     '/v1/auth/login',
     payload,
   );

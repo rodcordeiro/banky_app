@@ -38,8 +38,9 @@ export function ToastHook({ children }: React.PropsWithChildren) {
             {...toast}
             onCancel={() => {
               if (toast.onCancel) {
-                toast.onCancel(toast), cancelToast(toast.id);
+                toast.onCancel(toast);
               }
+              cancelToast(toast.id);
             }}
           />
         ))}
