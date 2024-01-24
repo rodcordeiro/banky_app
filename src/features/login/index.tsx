@@ -9,7 +9,7 @@ import { loginFormSchema } from './types/login.types';
 import { styles } from './styles';
 import { useLoginHook } from './hooks/login.hooks';
 
-const LoginScreen: React.FC<ScreenProps<'Login'>> = ({ navigation }) => {
+const LoginScreen: React.FC<ScreenProps<'Login', false>> = ({ navigation }) => {
   const { loading, handleSubmit, errorProps } = useLoginHook(navigation);
   return (
     <View style={styles.container}>

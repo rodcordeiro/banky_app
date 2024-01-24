@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '80%',
-    gap: 10,
+    gap: 15,
+    marginTop: 20,
   },
 });

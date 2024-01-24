@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useHomeHook } from './hooks/home.hooks';
+import { ActionSheet } from './components/ActionSheet';
 
-const HomeScreen = () => {
+const HomeScreen: React.FC<ScreenProps<'Home', true>> = () => {
   const { user } = useHomeHook();
 
   return (
@@ -12,6 +13,7 @@ const HomeScreen = () => {
         <Text style={styles.welcomeMessage}>Bem vindo de volta,</Text>
         <Text style={styles.username}>{user.name || 'USUARIO'}</Text>
       </View>
+      <ActionSheet />
     </View>
   );
 };
@@ -23,8 +25,9 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
   },
   welcomeContainer: {
-    top: 25,
-    left: 40,
+    paddingTop: 25,
+    paddingLeft: 40,
+
   },
   welcomeMessage: {
     fontSize: 18,

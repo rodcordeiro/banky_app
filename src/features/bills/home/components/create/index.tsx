@@ -1,17 +1,17 @@
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-// import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 export const CreateButton = () => {
-  // const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <View style={styles.button}>
       <Feather
         name="plus"
         color={'white'}
         size={30}
-        // onPress={() => navigate('AccountsCreate')}
+        onPress={() => navigate('BillsCreate')}
       />
     </View>
   );

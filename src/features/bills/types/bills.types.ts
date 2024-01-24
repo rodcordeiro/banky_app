@@ -6,7 +6,7 @@ export namespace BillsTypes {
     createdAt: string;
     updatedAt: string;
     name: string;
-    frequency: string;
+    frequency: BillFrequency;
   };
   export type DetailedView = {
     account: {
@@ -19,4 +19,18 @@ export namespace BillsTypes {
     expenses: ExpensesTypes.Expense[];
     averageValue: string;
   } & Bill;
+
+  export enum BillFrequency {
+    MONTHLY = 'monthly',
+    YEARLY = 'yearly',
+  }
+  export type CreatedBill = {
+    owner: {
+      createdAt: string;
+      id: string;
+      name: string;
+      updatedAt: string;
+      username: string;
+    };
+  } & Omit<DetailedView, 'expenses'>;
 }

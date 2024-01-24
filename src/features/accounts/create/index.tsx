@@ -8,7 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import { AccountCreateFormSchema } from './types/create.type';
 import { useAccountsCreate } from './hooks/create.hook';
 
-const AccountsCreateScreen: React.FC<ScreenProps<'AccountsCreate'>> = ({
+const AccountsCreateScreen: React.FC<ScreenProps<'AccountsCreate', true>> = ({
   navigation,
 }) => {
   const { handleSubmit, loading } = useAccountsCreate();

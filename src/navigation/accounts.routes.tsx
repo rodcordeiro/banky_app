@@ -4,7 +4,7 @@ import AccountsScreen from '@/features/accounts/home';
 import AccountsViewScreen from '@/features/accounts/account';
 import AccountsCreateScreen from '@/features/accounts/create';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<AuthenticatedRoutesParamList>();
 
 export const AccountsRoutes = () => (
   <Stack.Navigator

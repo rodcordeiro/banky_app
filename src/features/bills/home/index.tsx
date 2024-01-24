@@ -13,7 +13,7 @@ import { useBillsHomeHook } from './hooks/bills.hooks';
 import { Bill } from './components/Bill';
 import { CreateButton } from './components/create';
 
-const BillsHomeScreen: React.FC<ScreenProps<'BillsHome'>> = ({
+const BillsHomeScreen: React.FC<ScreenProps<'BillsHome', true>> = ({
   navigation,
 }) => {
   const { loading, bills } = useBillsHomeHook();

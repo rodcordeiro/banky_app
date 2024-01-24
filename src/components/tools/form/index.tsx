@@ -34,7 +34,10 @@ function Form<T extends FieldValues>({
           isLoading={isLoading}
           content={submitButtonText || 'Enviar'}
         />
-        {!!actions && actions.map((action) => <Button {...action} />)}
+        {!!actions &&
+          actions.map((action, idx) => (
+            <Button {...action} key={`btn_${idx}_form`} />
+          ))}
       </FormProvider>
     </View>
   );
