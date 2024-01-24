@@ -19,7 +19,6 @@ export function useLoginHook({ navigate }: ScreenProps<'Login'>['navigation']) {
   const handleSubmit = React.useCallback(async (data: LoginFormType) => {
     setLoading(true);
     dispatch(loginStart());
-
     Sentry.addBreadcrumb({
       category: 'User authentication payload',
       message: JSON.stringify(data),

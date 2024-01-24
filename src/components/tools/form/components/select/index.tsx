@@ -12,6 +12,7 @@ const Select = ({
   options,
   defaultValue,
   onChangeOption,
+  placeholder,
   ...rest
 }: SelectProps) => {
   const {
@@ -59,7 +60,13 @@ const Select = ({
             onValueChange={(itemValue, _) =>
               handleOptionChange(itemValue, field.onChange)
             }>
-            {[{ label: 'Selecione uma opção', value: 'PLACEHOLDER' }, options]
+            {[
+              {
+                label: placeholder ?? 'Selecione uma opção',
+                value: 'PLACEHOLDER',
+              },
+              options,
+            ]
               .flat(1)
               .map((option, index) => {
                 return (

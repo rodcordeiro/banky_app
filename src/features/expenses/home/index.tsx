@@ -5,6 +5,7 @@ import {
   View,
   FlatList,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 
 import { ExpensesTypes } from '../types/expenses.types';
@@ -13,10 +14,10 @@ import { useExpenseHomeHook } from './hooks/expense.hook';
 import Expense from './components/Expense';
 import { CreateButton } from './components/create';
 
-const ExpensesHomeScreen: React.FC<ScreenProps<'ExpensesHome', true>> = ({
-  navigation,
-}) => {
-  const { loading, expenses } = useExpenseHomeHook();
+const ExpensesHomeScreen: React.FC<
+  ScreenProps<'ExpensesHome', true>
+> = ({}) => {
+  const { loading, expenses, loadExpenses } = useExpenseHomeHook();
   return (
     <View style={styles.container}>
       {loading ? (
@@ -33,6 +34,9 @@ const ExpensesHomeScreen: React.FC<ScreenProps<'ExpensesHome', true>> = ({
             )}
             ItemSeparatorComponent={() => <View style={styles.line} />}
             contentContainerStyle={styles.accounts}
+            refreshControl={
+              <RefreshControl refreshing={loading} onRefresh={loadExpenses} />
+            }
             style={styles.accountsContainer}
           />
           <CreateButton />
@@ -61,13 +65,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   accounts: {
-    gap: 10,
+    // gap: 10,
   },
   line: {
     height: 2,
     width: '100%',
     marginLeft: 10,
-    backgroundColor: '#18181818',
+    backgroundColor: '#8A2BE218',
   },
 });
 

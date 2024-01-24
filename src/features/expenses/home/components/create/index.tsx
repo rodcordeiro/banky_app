@@ -11,7 +11,7 @@ export const CreateButton = () => {
         name="plus"
         color={'white'}
         size={30}
-        onPress={() => console.log('ExpensesCreate')}
+        onPress={() => navigate('ExpensesCreate')}
       />
     </View>
   );
