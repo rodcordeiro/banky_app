@@ -1,7 +1,0 @@
-__tests__
-node_modules
-.github
-.expo*
-android
-ios
-assets

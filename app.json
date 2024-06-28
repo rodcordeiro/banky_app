@@ -1,61 +1,36 @@
 {
   "expo": {
-    "name": "Banky",
+    "name": "banky",
     "slug": "banky",
-    "description": "A financial assistant app",
-    "githubUrl": "https://github.com/rodcordeiro/banky",
-    "backgroundColor": "#8A2BE2",
-    "primaryColor": "#8A2BE2",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#8A2BE2"
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/64a19d11-6df9-40e6-b7ef-d5b6f893c294"
-    },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#8A2BE2"
-      },
-      "package": "com.rodcordeiro.banky",
-      "versionCode": 1
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "64a19d11-6df9-40e6-b7ef-d5b6f893c294"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       }
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
     },
+    "plugins": [
+      "expo-router"
+    ],
     "experiments": {
-      "tsconfigPaths": true
-    },
-    "plugins": ["sentry-expo"],
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": "rodcordeiro",
-            "project": "banky"
-          }
-        }
-      ]
+      "typedRoutes": true
     }
   }
 }

@@ -1,50 +1,38 @@
-import { Pressable, ActivityIndicator, Text } from 'react-native';
-import { ButtonProps } from './types/button.types';
-import { styles } from './styles';
-import React from 'react';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
+import {
+  Text,
+  Pressable,
+  PressableProps,
+  ActivityIndicator,
+} from 'react-native';
 
-const Button: React.FC<ButtonProps> = ({
-  content,
-  icon,
-  onPress,
-  isLoading = false,
-  disabled = false,
-  customBackground,
+function Button({
+  children,
+  loading = false,
+  disabled,
   ...rest
-}) => {
-  const { Icon, hasIcon } = React.useMemo(
-    () => ({
-      hasIcon: !!icon,
-      Icon: () => icon,
-    }),
-    [icon],
-  );
+}: { children: ReactNode; loading?: boolean } & PressableProps) {
   return (
     <Pressable
-      onPress={onPress}
       {...rest}
-      style={[
-        styles.container,
-        {
-          backgroundColor: disabled
-            ? '#9d7eba'
-            : customBackground || styles.container.backgroundColor,
-        },
-      ]}>
-      <>
-        {isLoading ? (
-          <ActivityIndicator color={styles.loader.color} />
-        ) : hasIcon ? (
-          <Icon />
-        ) : null}
-      </>
-      {/* {isLoading && !hasIcon && (
-        <ActivityIndicator color={styles.loader.color} size={'small'} />
-      )} */}
-      {!!content && (!isLoading || (!isLoading && hasIcon)) && (
-        <Text style={styles.text}>{content}</Text>
+      className={clsx(
+        'w-full bg-electric-violet-600 p-4 m-2 rounded flex items-center justify-center',
+        (loading || disabled) && 'bg-electric-violet-950 text-white/75',
+      )}
+    >
+      {loading ? (
+        <ActivityIndicator color={'white'} size={'small'} />
+      ) : (
+        <>{children}</>
       )}
     </Pressable>
   );
-};
-export { ButtonProps, Button };
+}
+
+function ButtonText({ children }: { children: ReactNode }) {
+  return <Text className="text-white font-semibold">{children}</Text>;
+}
+
+Button.ButtonText = ButtonText;
+export { Button };
