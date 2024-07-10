@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { ReactNode } from 'react';
 import {
   Text,
@@ -6,6 +5,7 @@ import {
   PressableProps,
   ActivityIndicator,
 } from 'react-native';
+import clsx from 'clsx';
 
 function Button({
   children,
