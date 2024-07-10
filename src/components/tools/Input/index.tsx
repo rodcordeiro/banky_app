@@ -11,8 +11,8 @@ function InputContainer(props: TextInputProps) {
   return (
     <TextInput
       {...props}
-      className="w-full"
-      placeholderTextColor={COLORS.teal[800]}
+      className="w-full flex flex-row justify-between"
+      placeholderTextColor={COLORS.gray['700']}
     />
   );
 }
