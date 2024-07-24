@@ -38,17 +38,19 @@ export default function HomePage() {
         />
       </Input>
       <Input>
-        <Input.InputContainer
-          placeholder="Senha"
-          secureTextEntry={!visiblePassword}
-          onChangeText={setPassword}
-          keyboardAppearance="dark"
-          keyboardType="visible-password"
-          value={password}
-        />
-        <Pressable onPress={() => setVisiblePassword(!visiblePassword)}>
-          <Feather name={visiblePassword ? 'eye' : 'eye-off'} />
-        </Pressable>
+        <>
+          <Input.InputContainer
+            placeholder="Senha"
+            secureTextEntry={!visiblePassword}
+            onChangeText={setPassword}
+            keyboardAppearance="dark"
+            keyboardType="visible-password"
+            value={password}
+          />
+          <Pressable onPress={() => setVisiblePassword(!visiblePassword)}>
+            <Feather name={visiblePassword ? 'eye' : 'eye-off'} />
+          </Pressable>
+        </>
       </Input>
       <Button onPress={handleLogin} loading={loading}>
         <Button.ButtonText>Login</Button.ButtonText>
