@@ -49,7 +49,7 @@ export default function HomePage() {
 
   const handleLogin = React.useCallback(async () => {
     setLoading(true);
-    const notification = toast('Loading');
+    const notification = toast.loading('Autenticando...');
     console.log(notification);
     await api
       .post<Authenticated.Authentication>('/api/v1/auth/login', {
@@ -57,7 +57,7 @@ export default function HomePage() {
         password,
       })
       .then(({ data }) => {
-        toast('Logado', { id: notification });
+        toast.success('Logado', { id: notification });
         api.defaults.headers.authorization = `Bearer ${data.accessToken}`;
         realm.write(() =>
           realm.create(
@@ -72,7 +72,10 @@ export default function HomePage() {
         );
       })
       .catch(err => toast.error(err, { id: notification }))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        toast.dismiss(notification);
+      });
   }, [username, password]);
 
   return (
