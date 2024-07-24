@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useQuery } from '@realm/react';
+import { useQuery, useRealm } from '@realm/react';
+import { UpdateMode } from 'realm';
+import { toast } from '@backpackapp-io/react-native-toast';
+import { router } from 'expo-router';
 
 import { Input } from '../components/tools/Input';
 import { Button } from '../components/layout/Button';
-import { api } from '../lib/api';
+import { Reauthenticate, api } from '../lib/api';
 import { User } from '../database/schemas/user.schema';
 
 export default function HomePage() {
@@ -14,17 +17,61 @@ export default function HomePage() {
   const [username, setUsername] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
   const users = useQuery(User);
+  const realm = useRealm();
 
   React.useEffect(() => {
-    if (users) console.log(users);
+    if (users) {
+      const user = users[0];
+
+      try {
+        Reauthenticate(
+          {
+            login: user.username,
+            refreshToken: user.refresh_token,
+          },
+          async data => {
+            realm.write(() => {
+              user.expires = new Date(data.expires).toISOString();
+              user.refresh_token = data.refreshToken;
+            });
+          },
+        );
+        router.replace('/home');
+      } catch (e) {
+        realm.deleteAll();
+      }
+      // if (user.isExpired()) {
+      //   realm.delete(user);
+      //   return;
+      // }
+    }
   }, []);
 
   const handleLogin = React.useCallback(async () => {
     setLoading(true);
+    const notification = toast('Loading');
+    console.log(notification);
     await api
-      .post('/api/v1/auth/login', { username, password })
-      .then(response => console.log(response.data))
-      .catch(err => console.error(err))
+      .post<Authenticated.Authentication>('/api/v1/auth/login', {
+        username,
+        password,
+      })
+      .then(({ data }) => {
+        toast('Logado', { id: notification });
+        api.defaults.headers.authorization = `Bearer ${data.accessToken}`;
+        realm.write(() =>
+          realm.create(
+            User.schema.name,
+            {
+              username,
+              refresh_token: data.refreshToken,
+              expires: new Date(data.expires),
+            },
+            UpdateMode.All,
+          ),
+        );
+      })
+      .catch(err => toast.error(err, { id: notification }))
       .finally(() => setLoading(false));
   }, [username, password]);
 
