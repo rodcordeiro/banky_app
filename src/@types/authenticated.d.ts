@@ -13,6 +13,13 @@ declare global {
       name: string;
       username: string;
     }
+    export interface AuthenticatedUser {
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      name: string;
+      username: string;
+    }
   }
 }
 

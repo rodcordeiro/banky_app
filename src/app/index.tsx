@@ -40,10 +40,6 @@ export default function HomePage() {
       } catch (e) {
         realm.deleteAll();
       }
-      // if (user.isExpired()) {
-      //   realm.delete(user);
-      //   return;
-      // }
     }
   }, []);
 
@@ -56,25 +52,31 @@ export default function HomePage() {
         username,
         password,
       })
-      .then(({ data }) => {
-        toast.success('Logado', { id: notification });
+      .then(async ({ data }) => {
         api.defaults.headers.authorization = `Bearer ${data.accessToken}`;
-        realm.write(() =>
-          realm.create(
-            User.schema.name,
-            {
-              username,
-              refresh_token: data.refreshToken,
-              expires: new Date(data.expires),
-            },
-            UpdateMode.All,
-          ),
-        );
+
+        await api
+          .get<Authenticated.AuthenticatedUser[]>('/api/v1/users/me')
+          .then(({ data: user }) => {
+            toast.success('Logado', { id: notification });
+            realm.write(() =>
+              realm.create(
+                User.schema.name,
+                {
+                  username,
+                  name: user[0].name,
+                  refresh_token: data.refreshToken,
+                  expires: new Date(data.expires),
+                },
+                UpdateMode.All,
+              ),
+            );
+          });
       })
       .catch(err => toast.error(err, { id: notification }))
       .finally(() => {
         setLoading(false);
-        toast.dismiss(notification);
+        setTimeout(() => toast.dismiss(notification), 5000);
       });
   }, [username, password]);
 
@@ -104,7 +106,7 @@ export default function HomePage() {
       </Input>
       <Button onPress={handleLogin} loading={loading}>
         <Button.ButtonText>Login</Button.ButtonText>
-      </Button>
+      </Button> 
     </View>
   );
 }
