@@ -19,11 +19,11 @@
     "@realm/react": "^0.8.0",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
-    "expo": "~51.0.16",
-    "expo-dev-client": "~4.0.19",
+    "expo": "~51.0.23",
+    "expo-dev-client": "~4.0.21",
     "expo-font": "~12.0.7",
     "expo-linking": "~6.3.1",
-    "expo-router": "~3.5.17",
+    "expo-router": "~3.5.19",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-system-ui": "~3.0.6",
@@ -38,7 +38,8 @@
     "react-native-web": "~0.19.10",
     "realm": "^12.11.1",
     "zod": "^3.23.8",
-    "react-native-gesture-handler": "~2.16.1"
+    "react-native-gesture-handler": "~2.16.1",
+    "expo-updates": "~0.25.21"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

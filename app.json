@@ -13,14 +13,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.rodcordeiro.banky"
+      "package": "com.rodcordeiro.banky",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -40,6 +44,9 @@
       "eas": {
         "projectId": "64a19d11-6df9-40e6-b7ef-d5b6f893c294"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/64a19d11-6df9-40e6-b7ef-d5b6f893c294"
     }
   }
 }
