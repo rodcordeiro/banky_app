@@ -44,7 +44,10 @@ export default function Home() {
             <Accountcard
               account={{
                 name: 'Total',
-                ammount: accounts.reduce((curr, nxt) => curr + nxt.ammount, 0),
+                ammount: accounts.reduce(
+                  (curr: number, nxt: Banky.Account) => curr + nxt.ammount,
+                  0,
+                ),
               }}
             />
           </View>

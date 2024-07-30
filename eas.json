@@ -7,7 +7,7 @@
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "beta"
     },
     "production": {
       "channel": "production"
