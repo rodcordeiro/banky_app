@@ -7,9 +7,9 @@ export type AccountCardProps = {
 
 export function Accountcard({ account }: AccountCardProps) {
   return (
-    <View>
-      <Text className="text-white">{account.name}</Text>
-      <Text className="text-white">{currency(account.ammount || 0)}</Text>
+    <View className="flex columns-1 px-4 py-2 bg-gray-800 rounded-sm">
+      <Text className="text-gray-400">{account.name}</Text>
+      <Text className="text-gray-300">{currency(account.ammount || 0)}</Text>
     </View>
   );
 }

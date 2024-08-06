@@ -1,8 +1,7 @@
 import React from 'react';
 import { useQuery } from '@realm/react';
-import { ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { User } from '../database/schemas/user.schema';
-import { set } from 'zod';
 import { api } from '../lib/api';
 import { Accountcard } from '../components/tools/AccountCard';
 import { toast } from '@backpackapp-io/react-native-toast';
@@ -55,6 +54,17 @@ export default function Home() {
             {accounts.map(account => (
               <Accountcard account={account} />
             ))}
+          </ScrollView>
+          <ScrollView horizontal>
+            <Pressable>
+              <Text>Novo gasto</Text>
+            </Pressable>
+            <Pressable>
+              <Text>Novo ganho</Text>
+            </Pressable>
+            <Pressable>
+              <Text>Transf. Contas</Text>
+            </Pressable>
           </ScrollView>
         </>
       )}
